@@ -23,7 +23,7 @@
 
     <header>
         <h1>Adote um amigo</h1>
-        <p>Encontre o seu novo melhor parceiro aqui!</p>
+        <p>Encontre seu novo melhor amigo!</p>
     </header>
 
     <section class="busca-container">
@@ -58,21 +58,30 @@
             <form id="add-animal-form">
 
             <div class="campo">
+            <label>Nome do Tutor *</label>
+            <input type="text" id="nome_tutor" placeholder="Ex: Luiza Cardoso" required>
+            </div>
+
+            <div class="campo">
+            <label>Telefone do Tutor *</label>
+            <input type="text" id="telefone_tutor" placeholder="Ex: (98) 99999-9999" required>
+            </div>
+
+            <div class="campo">
             <label>Nome do Animal *</label>
             <input type="text" id="nome" placeholder="Ex: Rex" required>
             </div>
 
-
             <div class="campo">
-            <label>Espécie *</label>
-            <select id="especie" required>
-            <option value="cachorro">🐶 Cachorro</option>
-            <option value="gato">🐈 Gato</option>
+            <label>Status Animal *</label>
+            <select id="status" required>
+            <option value="disponível">Disponível</option>
+            <option value="em análise">Em Análise</option>
+            <option value="adotado">Adotado</option>
             </select>
             </div>
 
-
-            <div class="campo">
+             <div class="campo">
                 <label>Gênero *</label>
                 <select id="genero" required>
                     <option value="Macho">Macho</option>
@@ -80,6 +89,19 @@
                 </select>
             </div>
 
+            <div class="campo">
+            <label>Espécie *</label>
+            <select id="especie" required>
+            <option value="cachorro">🐶 Cachorro</option>
+            <option value="gato">🐈 Gato</option>
+            <option value="outro">🐾 Outro</option>
+            </select>
+            </div>
+
+            <div class="campo">
+                <label>Raça *</label>
+                <input type="text" id="raça" placeholder="Ex: Poodle" required>
+            </div>
 
             <div class="campo">
                 <label>Cor *</label>
