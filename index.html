@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title> 
+            Adoção Miaumigos</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    
+   <body>
+    <nav class="navbar">
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        <div class="logo">
+            <img src="imagens/logo.jpeg" alt="Logo Miaumigos" class="img-logo">
+            <span>Miaumigos</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#cadastro">Cadastrar Pet</a></li>
+            <li><a href="#sobre-ong">Sobre Nós</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Adote um amigo</h1>
+        <p>Encontre o seu novo melhor parceiro aqui!</p>
+    </header>
+
+    <section class="busca-container">
+        <div class="busca-wrapper">
+            <input type="text" id="inputBusca" placeholder="🔍 Tente 'gato', 'calmo' ou 'macho'...">
+        </div>
+
+    </section>
+
+    <main id="inicio" class="container">
+    <section class="animal-card">
+        <img src="https://jpimg.com.br/uploads/2023/07/14-racas-de-cachorro-para-familias-com-criancas.jpg" alt="Foto de um cachorro">
+        <h2>Bolinha</h2>
+        <p>Um filhote brincalhão e cheio de energia.</p>
+        <div class="card-botoes">
+            <button class="btn-adotar">Quero Adotar</button>
+        </div>
+    </section>
+
+    <section class="animal-card">
+        <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/05/gato-laranja-e1748043537291.jpg?w=1200&h=1200&crop=1" alt="Foto de um gato">
+        <h2>Mingau</h2>
+        <p>Um gato calmo que adora um colo e sachê.</p>
+        <div class="card-botoes">
+            <button class="btn-adotar">Quero Adotar</button>
+        </div>
+    </section>
+</main>
+    
+    <section id="cadastro" class="painel-branco">
+        <h2>🐾 Cadastrar Novo Pet</h2>
+            <form id="add-animal-form">
+
+            <div class="campo">
+            <label>Nome do Animal *</label>
+            <input type="text" id="nome" placeholder="Ex: Rex" required>
+            </div>
+
+
+            <div class="campo">
+            <label>Espécie *</label>
+            <select id="especie" required>
+            <option value="cachorro">🐶 Cachorro</option>
+            <option value="gato">🐈 Gato</option>
+            </select>
+            </div>
+
+
+            <div class="campo">
+                <label>Gênero *</label>
+                <select id="genero" required>
+                    <option value="Macho">Macho</option>
+                    <option value="Fêmea">Fêmea</option>
+                </select>
+            </div>
+
+
+            <div class="campo">
+                <label>Cor *</label>
+                <input type="text" id="cor" placeholder="Ex: Caramelo" required>
+            </div>
+
+
+            <div class="campo">
+            <label>Idade (anos) *</label>
+            <input type="number" id="idade" min="0" required>
+            </div>
+
+            <div class="campo">
+                <label>Temperamento</label>
+                <input type="text" id="temperamento" placeholder="Ex: Calmo, dócil...">
+            </div>
+
+
+            <div class="campo">
+            <label>Link da Foto (URL) *</label>
+            <input type="url" id="fotoURL" placeholder="https://linkdafoto.com/foto.jpg" required>
+            </div>
+
+
+            <div class="campo">
+            <label>Sobre o Animal</label>
+            <textarea id="sobre" rows="3" placeholder="Conte a história dele..."></textarea>
+            </div>
+
+
+            <div class="botoes">
+            <button type="submit" class="btn-salvar">Cadastrar Animal</button>
+            <button type="reset" class="btn-limpar">Limpar</button>
+            </div> 
+        </form>
+    </section>
+
+    <section id="sobre-ong" class="painel-branco">
+        <h2>Sobre a Miaumigos</h2>
+        <p>Somos um grupo de voluntários que atua no campus da UFPI em Teresina desde 2023 em favor dos animais. Com esse site, queremos conectar pessoas e animais que necessitam de um lar.</p>
+        <h3>Nossa Equipe</h3>
+        <div class="equipe-container">
+            <div class="membro-card">
+                <img src="imagens/luiza.png" alt="Tesoureira">
+                <h4>Luiza Cardoso</h4>
+                <p>Estudante de Veterinária</p>
+            </div>
+            
+            </div>
+    </section>
+
+     <a href="#cadastro" class="btn-flutuante" id="link-flutuante">
+         <span>+</span>
+    </a>
+    <script src="script.js"></script>
+  
+</body>
+</html>
