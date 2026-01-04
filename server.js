@@ -29,7 +29,7 @@ app.listen(3000, () => {
 });
 
 // Rota para salvar um novo pet
-app.post('/pets', (req, res) => {
+app.post('/cadastro_pets', (req, res) => {
     console.log("Recebi um pedido de cadastro:", req.body); // Log 1
 
     const { nome, especie, idade, genero, cor, temperamento, foto, sobre } = req.body;
@@ -45,9 +45,9 @@ app.post('/pets', (req, res) => {
         res.status(201).json({ message: "Cadastrado com sucesso!", id: result.insertId });
     });
 });
-app.get('/pets', (req, res) => {
+app.get('/cadastro_pets', (req, res) => {
     console.log("Alguém tentou acessar a lista de pets!"); // Isso vai aparecer no terminal
-    db.query("SELECT * FROM pets", (err, results) => {
+    db.query("SELECT * FROM cadastro_pets", (err, results) => {
         if (err) {
             console.error("Erro no MySQL:", err);
             return res.status(500).send(err);
@@ -56,7 +56,7 @@ app.get('/pets', (req, res) => {
     });
 });
 
-app.delete('/pets/:id', (req, res) => {
+app.delete('/cadastro_pets/:id', (req, res) => {
     const { id } = req.params;
     const sql = "DELETE FROM pets WHERE id = ?";
     
