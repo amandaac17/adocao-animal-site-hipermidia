@@ -11,6 +11,14 @@ links.forEach(link => {
 
         if (idSeccao.startsWith('#')) {
             e.preventDefault();
+
+            //Limpa formulario se clicar em cadastrar. 
+            if (e.isTrusted && idSeccao === '#cadastro') {
+                limparFormularioParaNovoCadastro();
+            }
+
+
+
             secoes.forEach(section => section.style.display = 'none');
 
             const barraBusca = document.querySelector('.busca-container');
@@ -37,16 +45,21 @@ async function renderizarPets(termoBusca = "") {
     try {
         const resposta = await fetch('http://localhost:3000/cadastro_pets');
         let listaParaExibir = await resposta.json();
+        console.log("Dados recebidos do banco:", listaParaExibir);
 
         // Filtro de busca (feito no front-end para agilizar)
         if (termoBusca) {
-            listaParaExibir = listaParaExibir.filter(p => 
-                p.nome.toLowerCase().includes(termoBusca) || 
-                p.especie.toLowerCase().includes(termoBusca) ||
-                (p.cor && p.cor.toLowerCase().includes(termoBusca))||
-                (p.raca && p.raca.toLowerCase().includes(termoBusca)) ||
-                (p.genero && p.genero.toLowerCase().includes(termoBusca))
-            );
+            const termo = termoBusca.toLowerCase();
+            listaParaExibir = listaParaExibir.filter(p => {
+                return (
+                    (p.nome && p.nome.toLowerCase().includes(termo)) || 
+                    (p.especie && p.especie.toLowerCase().includes(termo)) ||
+                    (p.cor && p.cor.toLowerCase().includes(termo)) ||
+                    (p.raca && p.raca.toLowerCase().includes(termo)) ||
+                    (p.genero && p.genero.toLowerCase().includes(termo)) ||
+                    (p.status && p.status.toLowerCase().includes(termo)) 
+                );
+            });
         }
 
         if (!containerAnimais) return;
@@ -57,26 +70,29 @@ async function renderizarPets(termoBusca = "") {
             card.classList.add('animal-card');
             card.innerHTML = `
                 <img src="${pet.foto}" alt="${pet.nome}">
-                <h2>${pet.nome}</h2>
-                <div style="font-weight: 600; font-size: 0.9rem; color: #444;">
-                    ${pet.especie} • ${pet.raca} • ${pet.genero}
-                </div>
-                <div style="font-size: 0.8rem; color: #888; margin-bottom: 8px;">
-                    Cor: ${pet.cor}
-                </div>
-                <p style="font-size: 0.85rem; color: #666; line-height: 1.4;">${pet.sobre}</p>
+                <div class="card-conteudo">
                 
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                
-                <div style="font-size: 0.8rem; color: #555;">
-                    <strong>Doador:</strong> ${pet.nome_tutor} <br>
-                    <strong>Contato:</strong> ${pet.telefone_tutor}
+                    <div class="header-card-pet">
+                        <h2>${pet.nome}</h2>
+                        ${obterEmojiStatus(pet.status)}
+                    </div>
+                    <div style="font-weight: 600; font-size: 0.9rem; color: #444;">
+                        ${pet.especie} • ${pet.raca} • ${pet.genero}
+                    </div>
+                    <div style="font-size: 0.8rem; color: #888; margin-bottom: 8px;">
+                        Cor: ${pet.cor} <br>Idade: ${pet.idade}
+                    </div>
+                    <p style="font-size: 0.85rem; color: #666; line-height: 1.4;">${pet.sobre}</p>
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                    <div style="font-size: 0.8rem; color: #555;">
+                        <strong>Doador:</strong> ${pet.nome_tutor} <br>
+                        <strong>Contato:</strong> ${pet.telefone_tutor}
+                    </div>
                 </div>
-
-               <div class="card-botoes" style="margin-top: 15px; display: flex; gap: 5px;">
-               <button onclick="removerPet(${pet.id})" class="btn-remover">Remover</button>
-                <button onclick="editarPorId(${pet.id})" class="btn-editar">Editar</button>
-            `;               //REMOVIDO <button class="btn-adotar">Quero Adotar</button>
+                <div class="card-botoes" style="margin-top: auto; display: flex; gap: 5px; padding: 15px;">
+                    <button onclick="removerPet(${pet.id})" class="btn-remover">Remover</button>
+                    <button onclick="editarPorId(${pet.id})" class="btn-editar">Editar</button>
+                </div>`;               //REMOVIDO <button class="btn-adotar">Quero Adotar</button>
 
             containerAnimais.appendChild(card);
         });
@@ -93,15 +109,16 @@ form.addEventListener('submit', async (e) => {
     const novoPet = {
         nome: document.getElementById('nome').value,
         especie: document.getElementById('especie').value,
-        raca: document.getElementById('raca').value,           // ADICIONADO
+        raca: document.getElementById('raca').value,
         idade: document.getElementById('idade').value,
-        foto: document.getElementById('fotoURL').value, 
-        sobre: document.getElementById('sobre').value,
-        genero: document.getElementById('genero').value,
+        genero: document.getElementById('genero').value, // Ordem organizada
         cor: document.getElementById('cor').value,
         temperamento: document.getElementById('temperamento').value,
-        nome_tutor: document.getElementById('nome_tutor').value,       // ADICIONADO
-        telefone_tutor: document.getElementById('telefone_tutor').value // ADICIONADO
+        foto: document.getElementById('fotoURL').value,
+        sobre: document.getElementById('sobre').value,
+        status: document.getElementById('status').value,
+        nome_tutor: document.getElementById('nome_tutor').value,
+        telefone_tutor: document.getElementById('telefone_tutor').value
     };
     // Se idEdicao tiver um número, usamos PUT e a URL com ID. Se for null, usamos POST.
     const url = idEdicao 
@@ -196,10 +213,11 @@ function preencherFormularioParaEdicao(pet) {
     document.getElementById('genero').value = pet.genero;
     document.getElementById('cor').value = pet.cor;
     document.getElementById('temperamento').value = pet.temperamento;
+    document.getElementById('status').value = pet.status;
     document.getElementById('nome_tutor').value = pet.nome_tutor;
     document.getElementById('telefone_tutor').value = pet.telefone_tutor;
 
-
+    
     // Muda o texto do botão para o usuário saber que está editando
     const btnSalvar = document.querySelector('#add-animal-form button[type="submit"]');
     btnSalvar.innerText = "Salvar Alterações";
@@ -235,8 +253,37 @@ function cancelarEdicao() {
     document.querySelector('a[href="#inicio"]').click();
 }
 
+// --- FUNÇÃO AUXILIAR ---
 
+function limparFormularioParaNovoCadastro() {
+    idEdicao = null; // Reseta o ID global
+    form.reset();    // Limpa todos os campos do formulário
+    
+    // Volta o botão de salvar ao estado original
+    const btnSalvar = document.querySelector('#add-animal-form button[type="submit"]');
+    btnSalvar.innerText = "Cadastrar Pet";
+    btnSalvar.style.backgroundColor = ""; // Volta a cor original (roxa/padrão)
+    
+    // Mostra o botão Limpar e esconde o Cancelar
+    const btnLimpar = document.querySelector('.btn-limpar');
+    if (btnLimpar) btnLimpar.style.display = 'inline-block';
+    
+    const btnCancelar = document.getElementById('btn-cancelar');
+    if (btnCancelar) btnCancelar.style.display = 'none';
+}
 
+function obterEmojiStatus(status) {
+    // Transforma para minúsculo para evitar erro de digitação
+    const s = status ? status.toLowerCase() : "";
+    
+    if (s === "adotado") {
+        return '<span class="status-badge adotado">🏠 Adotado </span>';
+    } else if (s === "em análise" || s === "em analise") {
+        return '<span class="status-badge analise">⏳ Em análise </span>';
+    } else {
+        return '<span class="status-badge disponivel">🐾 Disponível </span>';
+    }
+}
 
 // --- 3. INICIALIZAÇÃO E EVENTOS ---
 

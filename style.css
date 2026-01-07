@@ -7,13 +7,18 @@ body {
 }
 
 header {
+
     background-color: #8e44ad;
     color: white;
     padding: 80px 20px;
     border-radius: 0 0 80px 80px; /* Arredondado maior */
     margin-bottom: 40px; /* Sobrepõe levemente a busca */
-    box-shadow: 0 15px 35px rgba(142, 68, 173, 0.2); /* Sombra suave roxa */
+    box-shadow: 0 15x 35px rgba(142, 68, 173, 0.2); /* Sombra suave roxa */
     position: relative;
+    height: 180px;
+    align-items:center;
+    justify-content:center;
+    overflow:visible !important;
     z-index: 1;
 }
 
@@ -23,12 +28,12 @@ h1, h2, h3, .logo span {
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 3.9rem;
     margin-bottom: 10px;
 }
 
 header p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     opacity: 0.9;
 }
 
@@ -43,6 +48,82 @@ header p {
     display: flex;
     align-items: center;
 }
+
+.animais-header {
+    position: absolute;
+    bottom: 0px; /* VALOR NEGATIVO: Faz a imagem "sair" para baixo do roxo */
+    right: 60px; /* Posiciona no canto direito */
+    width: 450px; /* Ajuste o tamanho conforme necessário */
+    z-index: 10; /* Garante que ela fique por cima do conteúdo de baixo */
+    pointer-events: none; /* Evita que a imagem atrapalhe cliques em botões próximos */
+}
+.animais-header.direita {
+    right: 60px;
+}
+
+.animais-header.esquerda {
+    left: 60px;
+}
+@media (max-width: 768px) {
+    .animais-header {
+        width: 120px;
+        bottom: -20px;
+    }
+    .animais-header.esquerda {
+        left: 5px;
+    }
+    .animais-header.direita {
+        right: 5px;
+    }
+}
+
+.header-card-pet {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Traz tudo para o meio */
+    align-items: center;     /* Alinha a altura deles */
+    gap: 10px;               /* Espaço exato de 10px entre eles */
+    margin-bottom: 15px;
+    padding: 10px 0;         /* Ajuste o padding para não achatar */
+    width: 100%;             /* Garante que a div ocupe o card todo */
+}
+
+
+/* Container para o nome e o status ficarem alinhados */
+.header-card-pet h2 {
+    margin: 0;               
+    font-size: 1.5rem;       
+    line-height: 1;          
+}
+
+/* Estilo base das etiquetas */
+.status-badge {
+    font-size: 0.65rem;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* Cores específicas para cada status */
+.status-badge.disponivel {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-badge.analise {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-badge.adotado {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+
+
 
 /* --- NAVEGAÇÃO --- */
 .navbar {

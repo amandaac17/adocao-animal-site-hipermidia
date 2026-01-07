@@ -27,16 +27,17 @@ db.connect((err) => {
 app.post('/cadastro_pets', (req, res) => {
     console.log("Recebi um pedido de cadastro:", req.body);
 
-    const { nome, especie, raca, idade, genero, cor, temperamento, foto, sobre, nome_tutor, telefone_tutor } = req.body;
+    const { nome, especie, raca, idade, genero, cor, temperamento, foto, sobre, status, nome_tutor, telefone_tutor } = req.body;
 
     // (Obrigatoriedade)
     if (!nome_tutor || !telefone_tutor) {
         return res.status(400).json({ error: "Nome e Telefone do tutor são obrigatórios!" });
     }
 
-    const sql = "INSERT INTO cadastro_pets (nome, especie, raca, idade, genero, cor, temperamento, foto, sobre, nome_tutor, telefone_tutor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    
-    db.query(sql, [nome, especie, raca, idade, genero, cor, temperamento, foto, sobre, nome_tutor, telefone_tutor], (err, result) => {
+    const sql = "INSERT INTO cadastro_pets (nome, especie, raca, idade, genero, cor, temperamento, foto, sobre, status, nome_tutor, telefone_tutor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    const valores = [nome, especie, raca, idade, genero, cor, temperamento, foto, sobre, status, nome_tutor, telefone_tutor];
+
+    db.query(sql, valores, (err, result) => {
         if (err) {
             console.log("ERRO NO BANCO DE DADOS:", err.message);
             return res.status(500).json({ error: err.message });
@@ -79,17 +80,16 @@ app.listen(3000, () => {
 // ROTA PARA ATUALIZAR UM PET (PUT)
 app.put('/cadastro_pets/:id', (req, res) => {
     const id = req.params.id;
-    const { nome, especie, raca, idade, foto, sobre, genero, cor, temperamento, nome_tutor, telefone_tutor } = req.body;
+const { nome, especie, raca, idade, genero, cor, temperamento, foto, sobre, status, nome_tutor, telefone_tutor } = req.body;
 
     const sql = `
         UPDATE cadastro_pets 
-        SET nome = ?, especie = ?, raca = ?, idade = ?, foto = ?, 
-            sobre = ?, genero = ?, cor = ?, temperamento = ?, 
-            nome_tutor = ?, telefone_tutor = ? 
+        SET nome = ?, especie = ?, raca = ?, idade = ?, genero = ?, 
+            cor = ?, temperamento = ?, foto = ?, sobre = ?, 
+            status = ?, nome_tutor = ?, telefone_tutor = ?
         WHERE id = ?`;
 
-    const valores = [nome, especie, raca, idade, foto, sobre, genero, cor, temperamento, nome_tutor, telefone_tutor, id];
-
+        const valores = [nome, especie, raca, idade, genero, cor, temperamento, foto, sobre, status, nome_tutor, telefone_tutor, id];
     db.query(sql, valores, (err, result) => {
         if (err) {
             console.error("Erro ao atualizar no banco:", err);
