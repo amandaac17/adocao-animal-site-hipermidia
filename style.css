@@ -11,7 +11,7 @@ header {
     color: white;
     padding: 80px 20px;
     border-radius: 0 0 80px 80px; /* Arredondado maior */
-    margin-bottom: -40px; /* Sobrepõe levemente a busca */
+    margin-bottom: 40px; /* Sobrepõe levemente a busca */
     box-shadow: 0 15px 35px rgba(142, 68, 173, 0.2); /* Sombra suave roxa */
     position: relative;
     z-index: 1;
@@ -43,6 +43,7 @@ header p {
     display: flex;
     align-items: center;
 }
+
 /* --- NAVEGAÇÃO --- */
 .navbar {
     display: flex;
@@ -235,6 +236,35 @@ button:hover, .btn-flutuante:hover {
     transform: scale(1.1) rotate(90deg);
     background-color: indigo;
 }
+
+/* Botão Editar que fica dentro do card do animal */
+.btn-editar {
+    background-color: #ffc107; /* Amarelo para diferenciar do excluir e adotar */
+    color: #000;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-editar:hover {
+    background-color: #e0a800;
+}
+
+/* Estilo para o botão de cancelar que adicionamos no formulário */
+.btn-cancelar {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
 /* ----- EQUIPE ------*/
 .equipe-container {
     display: flex;
