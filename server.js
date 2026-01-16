@@ -15,6 +15,11 @@ const db = mysql.createConnection({
     database: 'miaumigos'
 });
 
+app.listen(3000, () => {
+    console.log('🚀 Servidor rodando na porta 3000');
+});
+
+
 db.connect((err) => {
     if (err) {
         console.error('Erro ao conectar ao MySQL:', err);
@@ -73,9 +78,7 @@ app.delete('/cadastro_pets/:id', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log('🚀 Servidor rodando na porta 3000');
-});
+
 
 // ROTA PARA ATUALIZAR UM PET (PUT)
 app.put('/cadastro_pets/:id', (req, res) => {

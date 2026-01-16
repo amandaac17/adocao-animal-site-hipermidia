@@ -11,9 +11,9 @@ header {
     background-color: #8e44ad;
     color: white;
     padding: 80px 20px;
-    border-radius: 0 0 80px 80px; /* Arredondado maior */
-    margin-bottom: 40px; /* Sobrepõe levemente a busca */
-    box-shadow: 0 15x 35px rgba(142, 68, 173, 0.2); /* Sombra suave roxa */
+    border-radius: 0 0 80px 80px; 
+    margin-bottom: 40px;
+    box-shadow: 0 15x 35px rgba(142, 68, 173, 0.2);
     position: relative;
     height: 180px;
     align-items:center;
@@ -23,7 +23,7 @@ header {
 }
 
 h1, h2, h3, .logo span {
-    font-family: 'Fredoka', sans-serif; /* Fonte arredondada para títulos */
+    font-family: 'Fredoka', sans-serif; 
     font-weight: 600;
 }
 
@@ -51,11 +51,11 @@ header p {
 
 .animais-header {
     position: absolute;
-    bottom: 0px; /* VALOR NEGATIVO: Faz a imagem "sair" para baixo do roxo */
-    right: 60px; /* Posiciona no canto direito */
-    width: 450px; /* Ajuste o tamanho conforme necessário */
-    z-index: 10; /* Garante que ela fique por cima do conteúdo de baixo */
-    pointer-events: none; /* Evita que a imagem atrapalhe cliques em botões próximos */
+    bottom: 0px;
+    right: 60px; 
+    width: 450px; 
+    z-index: 10; 
+    pointer-events: none; 
 }
 .animais-header.direita {
     right: 60px;
@@ -80,12 +80,12 @@ header p {
 .header-card-pet {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Traz tudo para o meio */
-    align-items: center;     /* Alinha a altura deles */
-    gap: 10px;               /* Espaço exato de 10px entre eles */
+    justify-content: center; 
+    align-items: center;     
+    gap: 10px;               
     margin-bottom: 15px;
-    padding: 10px 0;         /* Ajuste o padding para não achatar */
-    width: 100%;             /* Garante que a div ocupe o card todo */
+    padding: 10px 0;         
+    width: 100%;             
 }
 
 
@@ -153,11 +153,11 @@ header p {
 }
 
 .nav-links a {
-    color: indigo; /* Cinza escuro para leitura confortável */
+    color: indigo; 
     text-decoration: none;
     font-weight: 500;
     font-size: 1.1rem;
-    position: relative; /* Necessário para o efeito da linha embaixo */
+    position: relative; 
     padding: 5px 0;
     transition: color 0.3s ease;
 }
@@ -170,7 +170,7 @@ header p {
     color: #8e44ad;
 }
 
-/* Cria aquela linha elegante que "cresce" embaixo do texto */
+/* Cria a linha que cresce embaixo do texto */
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -214,6 +214,10 @@ header p {
 .animal-card div span, 
 .animal-card div {
     text-transform: capitalize;
+}
+/* Anula o capitalize  para o texto do parágrafo */
+.animal-card p {
+    text-transform: none !important;
 }
 
 .animal-card:hover {
@@ -274,7 +278,7 @@ button {     /* vale para todos os botões*/
 }
 button:hover, .btn-flutuante:hover {
     background-color: indigo !important; 
-    transform: scale(1.05); /* Dá um leve aumento de tamanho ao tocar */
+    transform: scale(1.05); 
 }
 
 .btn-salvar {

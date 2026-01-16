@@ -36,38 +36,84 @@
     </section>
 
     <main id="inicio" class="container">
-    <section class="animal-card">
-        <img src="https://jpimg.com.br/uploads/2023/07/14-racas-de-cachorro-para-familias-com-criancas.jpg" alt="Foto de um cachorro">
-        <h2>Bolinha</h2>
-        <p>Um filhote brincalhão e cheio de energia.</p>
-        <div class="card-botoes">
-            <button class="btn-adotar">Quero Adotar</button>
-        </div>
-    </section>
+        <section class="animal-card">
+            <img src="https://jpimg.com.br/uploads/2023/07/14-racas-de-cachorro-para-familias-com-criancas.jpg" alt="Foto de um cachorro">
+            
+            <div class="card-conteudo">
+                <div class="header-card-pet">
+                    <h2>Bolinha</h2>
+                    <span class="status-badge disponivel">🐾 Disponível</span>
+                </div>
 
-    <section class="animal-card">
-        <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/05/gato-laranja-e1748043537291.jpg?w=1200&h=1200&crop=1" alt="Foto de um gato">
-        <h2>Mingau</h2>
-        <p>Um gato calmo que adora um colo e sachê.</p>
-        <div class="card-botoes">
-            <button class="btn-adotar">Quero Adotar</button>
-        </div>
-    </section>
-</main>
+                <div style="font-weight: 600; font-size: 0.9rem; color: #444;">
+                    Cachorro • SRD • Macho
+                </div>
+                
+                <div style="font-size: 0.8rem; color: #888; margin-bottom: 8px;">
+                    Cor: Caramelo <br>Idade: 1 ano
+                </div>
+
+                <p style="font-size: 0.85rem; color: #666; line-height: 1.4;">
+                    Um filhote brincalhão, cheio de energia e muito dócil com crianças.
+                </p>
+                
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                
+            </div>
+
+            <div class="card-botoes" style="margin-top: auto; display: flex; gap: 5px; padding: 15px;">
+                <button class="btn-remover">Remover</button>
+                <button class="btn-editar">Editar</button>
+            </div>
+        </section>
+
+        <section class="animal-card">
+            <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/05/gato-laranja-e1748043537291.jpg?w=1200&h=1200&crop=1" alt="Foto de um gato">
+            
+            <div class="card-conteudo">
+                <div class="header-card-pet">
+                    <h2>Mingau</h2>
+                    <span class="status-badge analise">⏳ Em Análise</span>
+                </div>
+
+                <div style="font-weight: 600; font-size: 0.9rem; color: #444;">
+                    Gato • Siamês • Macho
+                </div>
+                
+                <div style="font-size: 0.8rem; color: #888; margin-bottom: 8px;">
+                    Cor: Laranja <br>Idade: 2 anos
+                </div>
+
+                <p style="font-size: 0.85rem; color: #666; line-height: 1.4;">
+                    Um gato calmo que adora um colo, sachê e dormir no sol.
+                </p>
+                
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                
+            </div>
+
+            <div class="card-botoes" style="margin-top: auto; display: flex; gap: 5px; padding: 15px;">
+                <button class="btn-remover">Remover</button>
+                <button class="btn-editar">Editar</button>
+            </div>
+        </section>
+    </main>
     
     <section id="cadastro" class="painel-branco">
         <h2>🐾 Cadastrar Novo Pet</h2>
             <form id="add-animal-form">
 
+   
             <div class="campo">
-            <label>Nome do Tutor *</label>
+            <label>Nome do Doador *</label>
             <input type="text" id="nome_tutor" placeholder="Ex: Luiza Cardoso" required>
             </div>
 
             <div class="campo">
-            <label>Telefone do Tutor *</label>
+            <label>Telefone do Doador *</label>
             <input type="text" id="telefone_tutor" placeholder="Ex: (98) 99999-9999" required>
             </div>
+
 
             <div class="campo">
             <label>Nome do Animal *</label>
