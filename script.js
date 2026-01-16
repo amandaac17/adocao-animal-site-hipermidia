@@ -57,7 +57,8 @@ async function renderizarPets(termoBusca = "") {
                     (p.cor && p.cor.toLowerCase().includes(termo)) ||
                     (p.raca && p.raca.toLowerCase().includes(termo)) ||
                     (p.genero && p.genero.toLowerCase().includes(termo)) ||
-                    (p.status && p.status.toLowerCase().includes(termo)) 
+                    (p.status && p.status.toLowerCase().includes(termo)) ||
+                    (p.temperamento) && p.temperamento.toLowerCase().includes(termo)
                 );
             });
         }
@@ -77,7 +78,7 @@ async function renderizarPets(termoBusca = "") {
                         ${obterEmojiStatus(pet.status)}
                     </div>
                     <div style="font-weight: 600; font-size: 0.9rem; color: #444;">
-                        ${pet.especie} • ${pet.raca} • ${pet.genero}
+                        ${pet.especie} • ${pet.raca} • ${pet.genero} • ${pet.temperamento}
                     </div>
                     <div style="font-size: 0.8rem; color: #888; margin-bottom: 8px;">
                         Cor: ${pet.cor} <br>Idade: ${pet.idade}
@@ -92,7 +93,7 @@ async function renderizarPets(termoBusca = "") {
                 <div class="card-botoes" style="margin-top: auto; display: flex; gap: 5px; padding: 15px;">
                     <button onclick="removerPet(${pet.id})" class="btn-remover">Remover</button>
                     <button onclick="editarPorId(${pet.id})" class="btn-editar">Editar</button>
-                </div>`;               //REMOVIDO <button class="btn-adotar">Quero Adotar</button>
+                </div>`;               // Só na versão 2 do site <button class="btn-adotar">Quero Adotar</button>
 
             containerAnimais.appendChild(card);
         });
@@ -111,7 +112,7 @@ form.addEventListener('submit', async (e) => {
         especie: document.getElementById('especie').value,
         raca: document.getElementById('raca').value,
         idade: document.getElementById('idade').value,
-        genero: document.getElementById('genero').value, // Ordem organizada
+        genero: document.getElementById('genero').value,
         cor: document.getElementById('cor').value,
         temperamento: document.getElementById('temperamento').value,
         foto: document.getElementById('fotoURL').value,
@@ -147,7 +148,7 @@ form.addEventListener('submit', async (e) => {
             alert(idEdicao ? "Pet atualizado com sucesso!" : "Pet cadastrado com sucesso!");
             
             // RESETAR TUDO
-            idEdicao = null; // Muito importante para o próximo clique não tentar editar de novo
+            idEdicao = null; // para o próximo clique não tentar editar de novo
             form.reset();
             document.querySelector('#add-animal-form button[type="submit"]').innerText = "Cadastrar Pet";
             
@@ -166,7 +167,7 @@ form.addEventListener('submit', async (e) => {
 
 // Função para remover pet do MySQL
 
-//ToDo: ALTERAR PARA APENAS DEIXAR INVISVEL E NAO REMOVER COMPLETAMENTE
+//TODO para versão 2 do site: ALTERAR PARA APENAS DEIXAR INVISVEL E NAO REMOVER COMPLETAMENTE
 async function removerPet(id) {
     if (confirm("Tem certeza que deseja remover este pet?")) {
         try {
